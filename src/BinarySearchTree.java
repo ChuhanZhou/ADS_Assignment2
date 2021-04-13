@@ -34,7 +34,81 @@ public class BinarySearchTree {
 
     public void removeElement(int element) {
         if (!tree.isEmpty() && tree.contains(element)) {
-
+            BinaryTreeNode superNode = null;
+            BinaryTreeNode node = tree.getRoot();
+            BinaryTreeNode replaceNode = null;
+            //find the location of remove node
+            while (true) {
+                if (node.getElement() > element)
+                {
+                    superNode = node;
+                    node = node.getLeftChild();
+                }
+                else if(node.getElement() == element)
+                {
+                    break;
+                }
+                else
+                {
+                    superNode = node;
+                    node = node.getRightChild();
+                }
+            }
+            //determine the number of sub node
+            if (node.getLeftChild()==null&&node.getRightChild()==null)
+            {
+                //have no sub node, no replace node
+            }
+            else if (node.getLeftChild()!=null&&node.getRightChild()==null||node.getLeftChild()==null&&node.getRightChild()!=null)
+            {
+                //have one sub node
+                if (node.getLeftChild()!=null)
+                {
+                    replaceNode = node.getLeftChild();
+                }
+                else
+                {
+                    replaceNode = node.getRightChild();
+                }
+            }
+            else
+            {
+                //have two sub node
+                BinaryTreeNode superNodeOfRightMin = node;
+                BinaryTreeNode rightMinNode = node.getRightChild();
+                while (rightMinNode.getLeftChild()!=null)
+                {
+                    superNodeOfRightMin = rightMinNode;
+                    rightMinNode = rightMinNode.getLeftChild();
+                }
+                if (superNodeOfRightMin.getLeftChild()==rightMinNode)
+                {
+                    superNodeOfRightMin.addLeftChild(rightMinNode.getRightChild());
+                }
+                else
+                {
+                    superNodeOfRightMin.addRightChild(rightMinNode.getRightChild());
+                }
+                rightMinNode.addLeftChild(node.getLeftChild());
+                rightMinNode.addRightChild(node.getRightChild());
+                replaceNode = rightMinNode;
+            }
+            //remove node
+            if (superNode!=null)
+            {
+                if (superNode.getLeftChild()==node)
+                {
+                    superNode.addLeftChild(replaceNode);
+                }
+                else
+                {
+                    superNode.addRightChild(replaceNode);
+                }
+            }
+            else
+            {
+                tree.setRoot(replaceNode);
+            }
         }
     }
 

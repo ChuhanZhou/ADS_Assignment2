@@ -28,8 +28,8 @@ public class Main {
         //System.out.println("levelOrder:"+tree.levelOrder());
         BinarySearchTree searchTree = new BinarySearchTree();
         //int[] list = {17,19,12,10,15,13,16,19,20,33,22};
-        //int[] list = {1,2,3,4,5,6,7,8,9,10};
-        int[] list = {9,8,7,6,5,4,3,2,1};
+        int[] list = {1,2,3,4,5,6};
+        //int[] list = {9,8,7,6,5,4,3,2,1};
         for (int x = 0; x < list.length; x++)
         {
             searchTree.insert(list[x]);
@@ -38,10 +38,14 @@ public class Main {
         BinaryTreePrint print = new BinaryTreePrint();
         print.printTree(searchTree.getTree().getRoot());
         System.out.println("\n");
+        searchTree.removeElement(5);
+        print.printTree(searchTree.getTree().getRoot());
+        System.out.println("\n");
 
-        System.out.println(searchTree.getTree().getRoot().balanceValue());
+        //System.out.println(searchTree.getTree().getRoot().balanceValue());
         //searchTree.rebalance();
         //print.printTree(searchTree.getTree().getRoot());
-        //System.out.println(searchTree.getTree().getRoot().height());
+        //System.out.println("\n");
+        //System.out.println(searchTree.getTree().getRoot().balanceValue());
     }
 }
