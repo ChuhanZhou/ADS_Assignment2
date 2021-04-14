@@ -8,8 +8,8 @@ public class BinarySearchTreeTest
   BinarySearchTree binarySearchTree=new BinarySearchTree();
 @Test
   public void getTree() {
-  BinaryTreeNode root=new BinaryTreeNode(1);
- tree=new BinaryTree(root);
+ // BinaryTreeNode root=new BinaryTreeNode(1);
+ //tree=new BinaryTree(root);
  binarySearchTree.insert(1);
   assertEquals(tree,binarySearchTree.getTree());
   }
